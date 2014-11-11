@@ -1,18 +1,8 @@
-define(function (require, exports, module) {var React = require('react');
+var React = require('react');
 
 var ANONYMOUS = '<<anonymous>>';
 
 var CustomPropTypes = {
-  /**
-   * Checks whether a prop is a valid React class
-   *
-   * @param props
-   * @param propName
-   * @param componentName
-   * @returns {Error|undefined}
-   */
-  componentClass: createComponentClassChecker(),
-
   /**
    * Checks whether a prop provides a DOM element
    *
@@ -55,19 +45,6 @@ function createChainableTypeChecker(validate) {
   return chainedCheckType;
 }
 
-function createComponentClassChecker() {
-  function validate(props, propName, componentName) {
-    if (!React.isValidClass(props[propName])) {
-      return new Error(
-        'Invalid prop `' + propName + '` supplied to ' +
-          '`' + componentName + '`, expected a valid React class.'
-      );
-    }
-  }
-
-  return createChainableTypeChecker(validate);
-}
-
 function createMountableChecker() {
   function validate(props, propName, componentName) {
     if (typeof props[propName] !== 'object' ||
@@ -83,4 +60,3 @@ function createMountableChecker() {
 }
 
 module.exports = CustomPropTypes;
-});

@@ -1,4 +1,4 @@
-define(function (require, exports, module) {
+
 /**
  * Shortcut to compute element style
  *
@@ -107,4 +107,3 @@ module.exports = {
   getPosition: getPosition,
   offsetParent: offsetParent
 };
-});

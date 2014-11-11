@@ -1,4 +1,4 @@
-define(function (require, exports, module) {module.exports = {
+module.exports = {
   CLASSES: {
     'alert': 'alert',
     'button': 'btn',
@@ -240,5 +240,3 @@ define(function (require, exports, module) {module.exports = {
     'tree-deciduous'
   ]
 };
-
-});

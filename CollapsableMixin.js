@@ -1,4 +1,4 @@
-define(function (require, exports, module) {var React = require('react');
+var React = require('react');
 var TransitionEvents = require('./utils/TransitionEvents');
 
 var CollapsableMixin = {
@@ -128,5 +128,3 @@ var CollapsableMixin = {
 };
 
 module.exports = CollapsableMixin;
-
-});

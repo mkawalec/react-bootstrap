@@ -1,4 +1,4 @@
-define(function (require, exports, module) {var React = require('react');
+var React = require('react');
 var CustomPropTypes = require('./utils/CustomPropTypes');
 
 module.exports = {
@@ -50,7 +50,7 @@ module.exports = {
     }
 
     // Save reference to help testing
-    this._overlayInstance = React.renderComponent(this.renderOverlay(), this._overlayTarget);
+    this._overlayInstance = React.render(this.renderOverlay(), this._overlayTarget);
   },
 
   _unrenderOverlay: function () {
@@ -71,5 +71,3 @@ module.exports = {
       this.props.container.getDOMNode() : this.props.container;
   }
 };
-
-});

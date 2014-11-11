@@ -1,4 +1,4 @@
-define(function (require, exports, module) {var React = require('react');
+var React = require('react');
 
 // TODO: listen for onTransitionEnd to remove el
 module.exports = {
@@ -52,5 +52,3 @@ module.exports = {
     }
   }
 };
-
-});

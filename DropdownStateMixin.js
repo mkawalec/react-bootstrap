@@ -1,4 +1,4 @@
-define(function (require, exports, module) {var React = require('react');
+var React = require('react');
 var EventListener = require('./utils/EventListener');
 
 /**
@@ -78,4 +78,3 @@ var DropdownStateMixin = {
 };
 
 module.exports = DropdownStateMixin;
-});

@@ -1,12 +1,11 @@
-define(function (require, exports, module) {/** @jsx React.DOM */
-
 var React = require('react');
+var joinClasses = require('./utils/joinClasses');
 
 var Jumbotron = React.createClass({displayName: 'Jumbotron',
 
   render: function () {
-    return this.transferPropsTo(
-      React.DOM.div( {className:"jumbotron"}, 
+    return (
+      React.createElement("div", React.__spread({},  this.props, {className: joinClasses(this.props.className, 'jumbotron')}), 
         this.props.children
       )
     );
@@ -14,4 +13,3 @@ var Jumbotron = React.createClass({displayName: 'Jumbotron',
 });
 
 module.exports = Jumbotron;
-});

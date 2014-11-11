@@ -1,4 +1,4 @@
-define(function (require, exports, module) {/* global window, document */
+/* global window, document */
 
 var React = require('react');
 var domUtils = require('./utils/domUtils');
@@ -129,4 +129,3 @@ var AffixMixin = {
 };
 
 module.exports = AffixMixin;
-});

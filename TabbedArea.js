@@ -1,8 +1,7 @@
-define(function (require, exports, module) {/** @jsx React.DOM */
-
 var React = require('react');
 var BootstrapMixin = require('./BootstrapMixin');
 var cloneWithProps = require('./utils/cloneWithProps');
+
 var ValidComponentChildren = require('./utils/ValidComponentChildren');
 var Nav = require('./Nav');
 var NavItem = require('./NavItem');
@@ -12,7 +11,7 @@ function getDefaultActiveKeyFromChildren(children) {
 
   ValidComponentChildren.forEach(children, function(child) {
     if (defaultActiveKey == null) {
-      defaultActiveKey = child.props.key;
+      defaultActiveKey = child.props.selectKey;
     }
   });
 
@@ -70,16 +69,16 @@ var TabbedArea = React.createClass({displayName: 'TabbedArea',
       return child.props.tab != null ? this.renderTab(child) : null;
     }
 
-    var nav = this.transferPropsTo(
-      Nav( {activeKey:activeKey, onSelect:this.handleSelect, ref:"tabs"}, 
+    var nav = (
+      React.createElement(Nav, React.__spread({},  this.props, {activeKey: activeKey, onSelect: this.handleSelect, ref: "tabs"}), 
         ValidComponentChildren.map(this.props.children, renderTabIfSet, this)
       )
     );
 
     return (
-      React.DOM.div(null, 
-        nav,
-        React.DOM.div( {id:this.props.id, className:"tab-content", ref:"panes"}, 
+      React.createElement("div", null, 
+        nav, 
+        React.createElement("div", {id: this.props.id, className: "tab-content", ref: "panes"}, 
           ValidComponentChildren.map(this.props.children, this.renderPane)
         )
       )
@@ -90,29 +89,29 @@ var TabbedArea = React.createClass({displayName: 'TabbedArea',
     return this.props.activeKey != null ? this.props.activeKey : this.state.activeKey;
   },
 
-  renderPane: function (child) {
+  renderPane: function (child, index) {
     var activeKey = this.getActiveKey();
 
     return cloneWithProps(
         child,
         {
-          active: (child.props.key === activeKey &&
+          active: (child.props.selectKey === activeKey &&
             (this.state.previousActiveKey == null || !this.props.animation)),
-          ref: child.props.ref,
-          key: child.props.key,
+          ref: child.ref,
+          key: child.key ? child.key : index,
           animation: this.props.animation,
           onAnimateOutEnd: (this.state.previousActiveKey != null &&
-            child.props.key === this.state.previousActiveKey) ? this.handlePaneAnimateOutEnd: null
+            child.props.selectKey === this.state.previousActiveKey) ? this.handlePaneAnimateOutEnd: null
         }
       );
   },
 
   renderTab: function (child) {
-    var key = child.props.key;
+    var key = child.props.selectKey;
     return (
-      NavItem(
-        {ref:'tab' + key,
-        key:key}, 
+      React.createElement(NavItem, {
+        ref: 'tab' + key, 
+        selectKey: key}, 
         child.props.tab
       )
     );
@@ -138,4 +137,3 @@ var TabbedArea = React.createClass({displayName: 'TabbedArea',
 });
 
 module.exports = TabbedArea;
-});

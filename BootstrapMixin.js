@@ -1,4 +1,4 @@
-define(function (require, exports, module) {var React = require('react');
+var React = require('react');
 var constants = require('./constants');
 
 var BootstrapMixin = {
@@ -33,4 +33,3 @@ var BootstrapMixin = {
 };
 
 module.exports = BootstrapMixin;
-});

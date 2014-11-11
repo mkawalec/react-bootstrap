@@ -1,4 +1,4 @@
-define(function (require, exports, module) {/**
+/**
  * Safe chained function
  *
  * Will only create a new function if needed,
@@ -23,4 +23,3 @@ function createChainedFunction(one, two) {
 }
 
 module.exports = createChainedFunction;
-});
